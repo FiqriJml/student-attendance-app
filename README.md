@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎓 Student Attendance Web App
 
-## Getting Started
+A minimal and mobile-first web application to record student attendance for a school. Built using **Next.js (App Router)**, **Supabase**, **Tailwind CSS**, and deployed on **Vercel**.
 
-First, run the development server:
+## 🛠️ Tech Stack
+
+- **Frontend Framework**: [Next.js (App Router)](https://nextjs.org/docs/app)
+- **Database & Auth**: [Supabase](https://supabase.com/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Hosting**: [Vercel](https://vercel.com/)
+
+## ✨ Features
+
+- 📋 Student, Teacher, and Subject Management
+- 🧑‍🏫 Associate teachers with subjects and schools
+- 🏫 School management (supports multiple schools)
+- ✅ Attendance recording
+- 📥 Import students, teachers, and subjects from spreadsheets
+- 📤 Export attendance records with custom templates
+- 📱 Fully mobile-responsive design
+
+## 📦 Folder Structure (Simplified)
+
+```
+app/               → App Router pages
+  ├─ schools/      → Manage schools
+  ├─ students/     → Manage students
+  ├─ teachers/     → Manage teachers
+  ├─ subjects/     → Manage subjects
+  ├─ attendance/   → Record and view attendance
+  ├─ export/       → Export attendance records
+  ├─ import/       → Import Excel data
+components/        → Reusable components (tables, forms, buttons)
+lib/               → Supabase client and utility functions
+types/             → TypeScript types (Student, Teacher, etc.)
+```
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/yourusername/student-attendance-app.git
+cd student-attendance-app
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Set up environment variables
+
+Create a `.env.local` file in the root directory:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+### 4. Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🧪 Supabase Schema (Overview)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `schools` — `id`, `name`, `address`
+- `students` — `id`, `name`, `school_id`
+- `teachers` — `id`, `name`, `school_id`
+- `subjects` — `id`, `name`, `teacher_id`, `school_id`
+- `attendance_records` — `id`, `student_id`, `subject_id`, `date`, `status`
 
-## Learn More
+## 📤 Export / 📥 Import
 
-To learn more about Next.js, take a look at the following resources:
+- Supports importing lists of students, teachers, and subjects via `.csv` or `.xlsx`
+- Export attendance by subject/school/date range with custom Excel template
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📱 Mobile First
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This app is designed with mobile use in mind and works great on smartphones and tablets for easy teacher usage.
 
-## Deploy on Vercel
+## 📄 License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+MIT
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+> Made with ❤️ using Next.js, Tailwind CSS, and Supabase.
