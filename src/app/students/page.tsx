@@ -7,13 +7,19 @@ import Link from "next/link";
 export default function StudentsPage() {
   const [students, setStudents] = useState<any[]>([]);
 
+  const fetchStudents = async () => {
+    const { data, error } = await supabase.from("students").select("*");
+    if (!error) setStudents(data);
+  };
+
   useEffect(() => {
-    const fetchStudents = async () => {
-      const { data, error } = await supabase.from("students").select("*");
-      if (!error) setStudents(data);
-    };
     fetchStudents();
   }, []);
+
+  const deleteStudent = async (id: number) => {
+    await supabase.from("students").delete().eq("id", id);
+    fetchStudents();
+  };
 
   return (
     <div className="p-4">
@@ -39,6 +45,17 @@ export default function StudentsPage() {
               <td className="border px-2">{student.name}</td>
               <td className="border px-2">{student.nis}</td>
               <td className="border px-2">{student.school_id}</td>
+              <td className="border px-2 space-x-2">
+                <Link href={`/students/form?id=${student.id}`}>
+                  <button className="text-blue-500">Edit</button>
+                </Link>
+                <button
+                  onClick={() => deleteStudent(student.id)}
+                  className="text-red-500"
+                >
+                  Delete
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
