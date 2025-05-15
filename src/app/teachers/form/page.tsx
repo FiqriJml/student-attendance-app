@@ -1,8 +1,7 @@
 "use client";
 
 import { supabase } from "@/lib/supabaseClient";
-import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/router";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function TeachersFormPage() {
