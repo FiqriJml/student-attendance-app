@@ -54,7 +54,7 @@ export default function TeachersFormPage() {
     } else {
       const { data, error } = await supabase
         .from("teachers")
-        .insert({ name, nip, email })
+        .insert([{ name, nip, email }])
         .select()
         .single();
       if (data) {
@@ -62,13 +62,7 @@ export default function TeachersFormPage() {
       }
     }
     // handle school relation
-    await supabase.from("teacher_schools").upsert(
-      {
-        teacher_id: teacherId,
-        school_id: schoolId,
-      },
-      { onConflict: "teacher_id" }
-    );
+    await supabase.from("teacher_schools").upsert([]);
     // .insert({ teacher_id: teacherId, school_id: schoolId })
 
     router.push("/teachers");
